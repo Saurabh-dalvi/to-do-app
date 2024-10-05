@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addTask = document.getElementById("addtaskbutton"); // Correct ID for add task button
     const taskList = document.getElementById("tasklist"); // Correct ID for the task list
 
-    let tasks = []; // Array to store tasks
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; // 
 
     // Function to render tasks
     function renderTask() {
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             taskItem.appendChild(deleteButton); // Add delete button to task item
             taskList.appendChild(taskItem); // Add task item to task list
         });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     // Function to add a task
@@ -52,4 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             addTask1(); // Add task on Enter key press
         }
     });
+renderTask();
 });
+
+
